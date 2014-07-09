@@ -1,0 +1,64 @@
+---
+title: "Machine Learning Notes"
+output: html_document
+---
+
+```{r setup, cache = F, echo = F, message = F, warning = F, tidy = F}
+```
+
+*This documents collects some notes and code from the Coursera course [practical machine learning](https://class.coursera.org/predmachlearn-003)*.
+
+The [*caret*](http://caret.r-forge.r-project.org/) package (short for Classification And REgression Training) is a set of functions that attempt to streamline the process for creating predictive models. The package contains tools for:
+
+* data splitting
+* pre-processing
+* feature selection
+* model tuning using resampling
+* variable importance estimation
+
+## Data splitting
+
+We can do the *data splitting*
+```{r loadPackage}
+library(lattice); library(ggplot2);
+library(caret); library(kernlab); 
+data(spam)
+inTrain <- createDataPartition(y=spam$type, p = 0.75, list = FALSE) # 75% for train and 25% for test
+training <- spam[inTrain,]
+testing <- spam[-inTrain,]
+dim(training)
+```
+
+We can also split the data with *K-fold*
+```{r kfold,dependson="loadPackage"}
+set.seed(32323)
+folds <- createFolds(y=spam$type, k=10, list=TRUE, returnTrain=TRUE)
+sapply(folds,length)
+folds[[1]][1:10]
+```
+
+
+
+Or *fit a model*
+```{r training, dependson="loadPackage",cache=TRUE, warning = F}
+set.seed(32343)
+modelFit <- train(type ~ ., data = training, method = "glm")
+modelFit
+```
+
+The final model is
+```{r}
+modelFit$finalModel
+```
+
+We can now predict
+```{r predictions, dependson="training",cache=TRUE}
+predictions <- predict(modelFit,newdata=testing)
+head(predictions)
+```
+
+The confusion matrix is 
+```{r confusion, dependson="predictions",cache=TRUE}
+confusionMatrix(predictions,testing$type)
+```
+
