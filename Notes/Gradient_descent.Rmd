@@ -1,0 +1,21 @@
+---
+title: "Gradient Descent in Machine Learning"
+author: "Alicia Wang"
+date: "10/16/2014"
+output: html_document
+---
+
+## Univariate Gradient Descent 
+
+- Supervised learning
+    * Classification problem
+    * Regression problem
+    
+    Training Set ($(x_i, y_i)_{i=1}^N$) -> Learning Algorithm -> Hypothesis function $h_\theta (x) = \theta_0 + \theta_1 x$ (univariate linear regression) where $\theta_i$ are parameters
+    
+    Define the _cost function_ or square error function as $J(\theta_0, \theta_1) = \dfrac{1}{2N}\sum_{i=1}^{N}(h_\theta(x_i) - y_i)^2$. 
+    
+    Goal : What we want to do is to minimize $\min_{\theta_0, \theta_1} J(\theta_0, \theta_1)$
+- Unsupervised learning
+
+
