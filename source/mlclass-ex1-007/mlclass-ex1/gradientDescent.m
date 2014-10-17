@@ -19,11 +19,9 @@ for iter = 1:num_iters
     %
     hypo = (X * theta - y)/m;
     
-    tmp0 = hypo' * Idv;
-    tmp1 = hypo' * X(:,2);
-
-    theta(1) -= alpha * tmp0;
-    theta(2) -= alpha * tmp1;
+    tmp = X' * hypo;
+    
+    theta -= alpha * tmp;
 
     % ============================================================
 
