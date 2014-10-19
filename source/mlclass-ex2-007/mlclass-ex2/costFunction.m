@@ -22,7 +22,7 @@ grad = zeros(size(theta));
 %
 target = X * theta; % dimension : m * (n+1) * (n+1) * 1 = m * 1
 
-hypo = Sigmoid(target);
+hypo = sigmoid(target);
 
 log0 = log(hypo);
 log1 = log(1 - hypo); % dimension : m * 1
@@ -30,13 +30,7 @@ log1 = log(1 - hypo); % dimension : m * 1
 J = log0' * y + log1' * (1-y);
 J = -J/m;
 
-grad = X' * hypo;
-
-
-
-
-
-
+grad = X' * (hypo - y)/m;
 
 % =============================================================
 
