@@ -6,6 +6,7 @@
 
 *.zip
 *~
+*ml_login_data.mat
 
 # R data files from past sessions
 *.Rdata

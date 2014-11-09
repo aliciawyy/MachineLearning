@@ -38,7 +38,19 @@ error_val = zeros(length(lambda_vec), 1);
 %       end
 %
 %
+m = length(y);
+n = length(yval);
 
+for i = 1:length(lambda_vec)
+
+theta = trainLinearReg(X, y, lambda_vec(i));
+
+t_train = X* theta - y;
+error_train(i) = t_train' * t_train /2/m;
+
+t_val = Xval * theta - yval;
+error_val(i) = t_val' * t_val /2/n;
+end
 
 
 
