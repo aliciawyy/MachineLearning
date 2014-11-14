@@ -39,8 +39,8 @@ end
 
 [row,col] = find(mat == min(min(mat)));
 
-C = mat(row);
-sigma = mat(col);
+C = val(row);
+sigma = val(col);
 
 
 
